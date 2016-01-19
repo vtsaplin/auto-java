@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.darylteo.gradle:javassist-plugin:0.4.1'
+        classpath 'com.tsaplin.autojava:generator:0.0.5'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'net.ltgt.apt' version '0.5'
+    id 'idea'
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+task transform1(type: com.darylteo.gradle.javassist.tasks.TransformationTask) {
+    classpath += configurations.compile
+    from sourceSets.main.output.classesDir
+    into sourceSets.main.output.classesDir
+    transformation = new com.tsaplin.autojava.trait.TraitTransformer()
+}
+
+task transform2(type: com.darylteo.gradle.javassist.tasks.TransformationTask) {
+    classpath += configurations.compile
+    from sourceSets.main.output.classesDir
+    into sourceSets.main.output.classesDir
+    transformation = new com.tsaplin.autojava.boundproperty.BoundPropertyTransformer()
+}
+
+project.tasks.classes.dependsOn(project.tasks.transform1, project.tasks.transform2)
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+
+dependencies {
+    compile 'com.tsaplin.autojava:core:0.0.5'
+    compile 'com.google.guava:guava:18.0'
+    apt 'com.tsaplin.autojava:processor:0.0.5'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'junit:junit:4.12'
+}
