@@ -4,7 +4,7 @@ Java is a great language but as nothing is perfect it also has a few limitations
 ## Multiple inheritance with traits
 The first problem which we will address stems from the fact that Java does not support multiple inheritance. The recommended way to achieve a similar result is to combine interfaces with delegation. But delegation when it is used often can be tedious. Traits are here to help us ease this problem.
 
-Lets say you have a class which contains some state and behavior and supposed to be a part of some other classes. In contrast to a plain interface with default methods it also contains state. In languages like Scala we would simply inherit from a trait but in Java we are limited to interfaces. The _Observable_ class serves as a good example of such situation.
+Lets say you have a class which contains some state and behavior and supposed to be a part of some other classes. In contrast to a plain interface with default methods it also contains state. In languages like Scala we would simply inherit from a trait but in Java we are limited to interfaces. The _Observable_ class is a good example of such a situation.
 
 ``` java
 @Trait
