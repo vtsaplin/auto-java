@@ -1,5 +1,5 @@
 # Auto Java
-Java is a great language but as nothing is perfect it also has a few limitations. On the other hand it offers some ways to overcome its own shortcomings. With source and byte code generation in place we can implement features which are only available in other languages. This library adds _traits_, _AOP_ and _auto-generated bound properties_ to Java.
+Java is a great language but as nothing is perfect it also has a few limitations. On the other hand it offers some ways to overcome its own shortcomings. With source code and byte code generation in place we can implement features which are only available in other languages. This library adds traits, AOP and auto-generated bound properties to Java.
 
 ## Multiple inheritance with traits
 The first problem which we will address stems from the fact that Java does not support multiple inheritance. The recommended way to achieve a similar result is to combine interfaces with delegation. But delegation when it is used often can be tedious. Traits are here to help us ease this problem.
