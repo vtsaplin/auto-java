@@ -1,11 +1,23 @@
-subprojects {
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
+    }
+}
 
-    apply plugin: 'java'
-    apply plugin: 'maven-publish'
-    apply plugin: "idea"
+allprojects {
+    apply plugin: 'idea'
 
     group = 'com.tsaplin.autojava'
     version = '0.0.5'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'com.jfrog.bintray'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -15,6 +27,19 @@ subprojects {
             mavenJava(MavenPublication) {
                 from components.java
             }
+        }
+    }
+
+    bintray {
+        user = project.property('bintray.user')
+        key = project.property('bintray.key')
+
+        publications = ['mavenJava']
+        publish = true
+
+        pkg {
+            repo = 'maven'
+            name = 'auto-java'
         }
     }
 
