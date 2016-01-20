@@ -1,5 +1,6 @@
 dependencies {
     compile project(':core')
+    compile 'de.icongmbh.oss.maven.plugins:javassist-maven-plugin:1.1.0'
     compile 'com.github.stephanenicolas.javassist:javassist-build-plugin-api:1.0.0'
     compile 'com.google.guava:guava:19.0'
     testCompile 'junit:junit:4.12'

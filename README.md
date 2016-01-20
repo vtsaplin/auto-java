@@ -173,7 +173,7 @@ public class ExampleProperties implements HasBoundProperties {
 ```
 
 ## Using the library
-The library consists of 3 artifacts: _core_, _processor_ and _generator_. The _core_ artifact contains all compile time dependencies. _Processor_ includes APT code and only needed when you plan to use _traits_. _Generator_ is always required. Below you will find an example of a Gradle build script which uses all features. For the maven integration please check [this](https://github.com/icon-Systemhaus-GmbH/javassist-maven-plugin) project.
+The library consists of 3 artifacts: _core_, _processor_ and _generator_. The _core_ artifact contains all compile time dependencies. _Processor_ includes APT code and only needed when you plan to use _traits_. _Generator_ is always required. Below you will find an example of a Gradle build script which uses all features.
 
 ``` groovy
 buildscript {
@@ -228,6 +228,95 @@ dependencies {
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'junit:junit:4.12'
 }
+```
+
+If you prefer Maven you can use the snippet below as a starting point.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tsaplin.autojava</groupId>
+    <artifactId>examples</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>de.icongmbh.oss.maven.plugins</groupId>
+                <artifactId>javassist-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <configuration>
+                    <includeTestClasses>false</includeTestClasses>
+                    <transformerClasses>
+                        <transformerClass>
+                            <className>com.tsaplin.autojava.trait.TraitTransformer</className>
+                        </transformerClass>
+                        <transformerClass>
+                            <className>com.tsaplin.autojava.boundproperty.BoundPropertyTransformer</className>
+                        </transformerClass>
+                    </transformerClasses>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.tsaplin.autojava</groupId>
+                        <artifactId>generator</artifactId>
+                        <version>0.0.5</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>javassist</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.tsaplin.autojava</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tsaplin.autojava</groupId>
+            <artifactId>processor</artifactId>
+            <version>0.0.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
 ```
 
 All suggestions and contributions are always welcome.

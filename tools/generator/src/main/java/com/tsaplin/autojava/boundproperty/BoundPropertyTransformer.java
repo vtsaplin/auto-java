@@ -1,5 +1,6 @@
 package com.tsaplin.autojava.boundproperty;
 
+import de.icongmbh.oss.maven.plugin.javassist.ClassTransformer;
 import javassist.CtClass;
 import javassist.CtField;
 import javassist.CtMethod;
@@ -10,7 +11,7 @@ import javassist.build.JavassistBuildException;
 /**
  * Converts regular bean properties to bound properties.
  */
-public class BoundPropertyTransformer implements IClassTransformer {
+public class BoundPropertyTransformer extends ClassTransformer implements IClassTransformer {
 
     private static final String PROPERTY_CHANGE_SUPPORT =
             "private final java.beans.PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);";

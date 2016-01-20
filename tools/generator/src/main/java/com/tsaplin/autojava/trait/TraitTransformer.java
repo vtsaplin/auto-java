@@ -1,5 +1,6 @@
 package com.tsaplin.autojava.trait;
 
+import de.icongmbh.oss.maven.plugin.javassist.ClassTransformer;
 import javassist.*;
 import javassist.build.IClassTransformer;
 import javassist.build.JavassistBuildException;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
 /**
  * Transforms classes to support multiple inheritance via delegation.
  */
-public class TraitTransformer implements IClassTransformer {
+public class TraitTransformer extends ClassTransformer implements IClassTransformer {
 
     private static final Pattern TRAIT_CLASS_PATTERN = Pattern.compile("Trait\\(impl=(.*).class\\)");
 
