@@ -1,5 +1,5 @@
 # Auto Java
-Java is a great language but as nothing is perfect it also has a few limitations. On the other hand it offers some ways to overcome its own shortcomings. Using source/byte code generation we can implement features which are only available in other languages such as traits, AOP and auto-generated bound properties.
+Java is a great language and fun to use but as nothing is perfect it also has many limitations. Using source/byte code generation __Auto-Java__ implements some missing features such as traits (mixins), AOP and auto-generated bound properties.
 
 ## Multiple inheritance with traits
 The first problem which we will address stems from the fact that Java does not support multiple inheritance. The recommended way to achieve a similar result is to combine interfaces with delegation. But delegation when it is used often can be tedious. Traits are here to help us ease this problem.
