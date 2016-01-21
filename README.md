@@ -31,7 +31,7 @@ public class ConcreteObservable implements Observable {
 }
 ```
 
-As you maybe noticed we use a special annotation called `Trait` to denote a _trait_. The support for _traits_ is implemented as a two stage process. First, an annotation processor is used to generate an interface which can be implemented by the classes that want to include this trait. Second, the byte code generation facility comes into play to inject implementations of the methods that are inherited from the generated interface. It simply injects an instance of a class (which represents a trait) and delegates all method calls to it. Actually we will end up with the same result which we could achieve doing this by hands.
+As you maybe noticed we use a special annotation called `Trait` to denote a _trait_. The support for _traits_ is implemented as a two stage process. First, an annotation processor is used to generate an interface which can be implemented by classes that want to include this trait. Second, the byte code generation facility comes into play to inject an implementation of the methods that are inherited from the generated interface. It simply injects an instance of a class (which represents a trait) and delegates all method calls to it. Actually we will end up with the same result which we could achieve doing this by hands.
 
 ``` java
 public class ExampleObservable implements ConcreteObservableTrait {
