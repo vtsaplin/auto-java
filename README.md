@@ -4,7 +4,7 @@ Java is a great language but as nothing is perfect it also has a few limitations
 ## Multiple inheritance with traits
 The first problem which we will address stems from the fact that Java does not support multiple inheritance. The recommended way to achieve a similar result is to combine interfaces with delegation. But delegation when it is used often can be tedious. Traits are here to help us ease this problem.
 
-Lets say you have a class which contains some state and behavior and supposed to be a part of some other classes. In contrast to a plain interface with default methods it also contains state. In languages like Scala we would simply inherit from a trait but in Java we are limited to interfaces. The _Observable_ class is a good example of such a situation.
+Lets say you have a class which contains some state and behavior and supposed to be mixed into other classes. In contrast to a plain interface with default methods it also contains state. In languages like Scala we would simply inherit from a trait but in Java we are limited to interfaces. The _ConcreteObservable_ class is a good example of such a situation.
 
 ``` java
 @Trait
@@ -173,7 +173,7 @@ public class ExampleProperties implements HasBoundProperties {
 ```
 
 ## Using the library
-The library consists of 3 artifacts: _core_, _processor_ and _generator_. The _core_ artifact contains all compile time dependencies. _Processor_ includes APT code and only needed when you plan to use _traits_. _Generator_ is always required. Below you will find an example of a Gradle build script which uses all features.
+The library consists of 3 artifacts: _core_, _processor_ and _generator_. All artifacts are available in __JCenter__ repository.The _core_ artifact contains all compile time dependencies. _Processor_ includes annotation processing code and only needed when you plan to use _traits_. _Generator_ is used for byte code generation and always required. Below you will find an example of a Gradle build script which uses all features.
 
 ``` groovy
 buildscript {
@@ -316,6 +316,26 @@ If you prefer Maven you can use the snippet below as a starting point.
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
 ```
 
