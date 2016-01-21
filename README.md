@@ -31,7 +31,7 @@ public class ConcreteObservable implements Observable {
 }
 ```
 
-As you maybe noticed we use a special annotation called `Trait` to denote a _trait_. The support for _traits_ is implemented as a two stage process. First, an annotation processor is used to generate an interface which can be implemented by classes that want to include this trait. Second, the byte code generation facility comes into play to inject an implementation of the methods that are inherited from the generated interface. It simply injects an instance of a class (which represents a trait) and delegates all method calls to it. Actually we end up with the same result as we could achieve doing this by hands.
+As you maybe noticed we use a special annotation called `Trait` to denote a _trait_. The support for _traits_ is implemented as a two stage process. First, an annotation processor is used to generate an interface which can be implemented by classes that want to include this trait. Second, the byte code generation facility comes into play to inject an implementation of the methods that are inherited from the generated interface. It simply injects an instance of a class (which represents a trait) and delegates all method calls to it. Worth to mention that a class which implements a trait has to have a public no-argument constructor. Here is how we could possibly use our new trait.
 
 ``` java
 public class ExampleObservable implements ConcreteObservableTrait {
@@ -64,7 +64,7 @@ public interface ConcreteObservableTrait extends Observable {
 }
 ```
 
-So the new interface can be safely used wherever interfaces implemented by the original class are used.
+The new interface can be safely used wherever interfaces implemented by the original class are used.
 
 ``` java
 public interface Observer {
