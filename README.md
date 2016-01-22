@@ -137,7 +137,7 @@ public interface TransactionManager {
 Due to the way the method interception works the only available _advice_ type is _around_.
 
 ## Auto-generated bound properties
-Java has a notion of bound properties. A good example where it may be useful is UI binding. Bound properties are generally easy to implement but often lead to very verbose and repetitive code. So what we can do instead is some code generation magic. While it is also possible to achieve with _traits_ the solution will be slightly inefficient due to involved _reflection_. We can do better by generating the code that we would otherwise write by hands.
+Java has a notion of bound properties. A good example where it may be useful is UI binding. Bound properties are generally easy to implement but often lead to very verbose and repetitive code. So what we can do instead is some code generation magic. While it is also possible to achieve this with _traits_ the solution will be slightly inefficient due to involved _reflection_. But we can do better by generating code that we would otherwise write by hands.
 
 In the following example in order to make a class observable we tell it to implement the `HasBoundProperties` interface and then we annotate all setters that should be modified with the `PropertySetter` annotation.
 
