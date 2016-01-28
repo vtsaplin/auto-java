@@ -2,9 +2,7 @@
 Java is a great language and fun to use but as nothing is perfect it also has many limitations. Using source/byte code generation __Auto-Java__ implements some missing features such as traits (mixins), AOP and auto-generated bound properties.
 
 ## Multiple inheritance with traits
-The first problem which we will address stems from the fact that Java does not support multiple inheritance. The recommended way to achieve a similar result is to combine interfaces with delegation. But delegation when it is used often can be tedious. Traits are here to help us ease this problem.
-
-Lets say you have a class which contains some state and behavior and supposed to be mixed into other classes. In contrast to a plain interface with default methods it also contains state. In languages like Scala we would simply inherit from a trait but in Java we are limited to interfaces. The _ConcreteObservable_ class is a good example of such a situation.
+Lets say you have a class which is supposed to be mixed into other classes. In contrast to a plain interface with default methods it may contain state. In languages like Scala we would simply inherit from a trait but in Java we are limited to interfaces. The _ConcreteObservable_ class is a good example of such a situation.
 
 ``` java
 @Trait
